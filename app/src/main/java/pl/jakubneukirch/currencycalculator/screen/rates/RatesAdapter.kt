@@ -1,5 +1,6 @@
 package pl.jakubneukirch.currencycalculator.screen.rates
 
+import android.text.InputFilter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,6 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_rate.view.*
 import pl.jakubneukirch.currencycalculator.R
 import pl.jakubneukirch.currencycalculator.data.model.view.Rate
+import pl.jakubneukirch.currencycalculator.utils.android.DecimalInputFilter
+import pl.jakubneukirch.currencycalculator.utils.roundDecimalPlace
 
 
 class RatesAdapter : RecyclerView.Adapter<RatesAdapter.ViewHolder>() {
@@ -40,7 +43,7 @@ class RatesAdapter : RecyclerView.Adapter<RatesAdapter.ViewHolder>() {
             with(itemView) {
                 currencyAbbreviationTextView.text = rate.currencyAbbreviation
                 currencyNameTextView.text = rate.currencyName
-                rateTextView.text = "${rate.value}"
+                rateTextView.setText("${rate.value.roundDecimalPlace()}")
             }
         }
     }

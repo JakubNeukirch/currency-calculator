@@ -50,14 +50,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
-    <TextView
+    <EditText
             android:id="@+id/rateTextView"
             style="@style/TextAppearance.AppCompat.Large"
+            android:minWidth="@dimen/rate_value_min_width"
             android:layout_margin="@dimen/rate_value_margin"
-            android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
+            android:enabled="false"
+            android:textColor="@color/rates_text_color"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
