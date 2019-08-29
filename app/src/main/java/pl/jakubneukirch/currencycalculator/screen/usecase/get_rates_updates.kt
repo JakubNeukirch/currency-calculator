@@ -1,7 +1,6 @@
 package pl.jakubneukirch.currencycalculator.screen.usecase
 
 import io.reactivex.Observable
-import io.reactivex.schedulers.Schedulers
 import pl.jakubneukirch.currencycalculator.base.UseCase
 import pl.jakubneukirch.currencycalculator.data.model.view.RatesTable
 import pl.jakubneukirch.currencycalculator.data.repository.CurrencyRepository
@@ -15,7 +14,7 @@ interface IGetRatesUpdates : UseCase<UseCase.None, Observable<RatesTable>>
  */
 class GetRatesUpdates constructor(private val _currencyRepository: CurrencyRepository) : IGetRatesUpdates {
     override fun run(params: UseCase.None): Observable<RatesTable> {
-        return Observable.interval(REFRESH_INTERVAL, TimeUnit.SECONDS)
+        return Observable.interval(INITIAL_DELAY, REFRESH_INTERVAL, TimeUnit.SECONDS)
             .flatMapSingle { _currencyRepository.getRates() }
         //todo implement in offline mode.onErrorReturn {  }
     }
@@ -25,5 +24,6 @@ class GetRatesUpdates constructor(private val _currencyRepository: CurrencyRepos
          * Refresh delay in Seconds
          */
         private const val REFRESH_INTERVAL = 1L
+        private const val INITIAL_DELAY = 0L
     }
 }
