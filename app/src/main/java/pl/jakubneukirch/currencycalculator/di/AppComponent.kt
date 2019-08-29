@@ -7,11 +7,12 @@ import pl.jakubneukirch.currencycalculator.app.App
 import pl.jakubneukirch.currencycalculator.di.modules.AppModule
 import pl.jakubneukirch.currencycalculator.di.modules.ConverterModule
 import pl.jakubneukirch.currencycalculator.di.modules.RatesModule
+import pl.jakubneukirch.currencycalculator.di.modules.UseCaseModule
 import javax.inject.Singleton
 
 @Singleton
 @Component(
-    modules = [AppModule::class, ConverterModule::class, RatesModule::class]
+    modules = [AppModule::class, ConverterModule::class, RatesModule::class, UseCaseModule::class]
 )
 interface AppComponent {
     fun inject(app: App)
@@ -20,6 +21,7 @@ interface AppComponent {
     interface Builder {
         @BindsInstance
         fun application(app: Application): Builder
+
         fun build(): AppComponent
     }
 }
