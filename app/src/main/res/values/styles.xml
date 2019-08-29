@@ -18,10 +18,12 @@
     <style name="AppTheme.AppBar.Title" parent="TextAppearance.AppCompat.Title">
         <item name="android:textColor">@color/black</item>
     </style>
-    
+
     <style name="AppTheme.TabItemText" parent="TextAppearance.AppCompat.Subhead">
         <item name="android:textAllCaps">false</item>
         <item name="android:textColor">@color/black</item>
     </style>
+
+    <style name="AppTheme.TextView" parent="TextAppearance.AppCompat"/>
 
 </resources>

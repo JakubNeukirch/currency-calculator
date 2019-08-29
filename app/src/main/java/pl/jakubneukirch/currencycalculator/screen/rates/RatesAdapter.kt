@@ -8,6 +8,7 @@ import kotlinx.android.synthetic.main.item_rate.view.*
 import pl.jakubneukirch.currencycalculator.R
 import pl.jakubneukirch.currencycalculator.data.model.view.Rate
 
+
 class RatesAdapter : RecyclerView.Adapter<RatesAdapter.ViewHolder>() {
 
     var rates: List<Rate> = listOf()
@@ -37,7 +38,8 @@ class RatesAdapter : RecyclerView.Adapter<RatesAdapter.ViewHolder>() {
 
         fun bind(rate: Rate) {
             with(itemView) {
-                currencyNameTextView.text = rate.currency
+                currencyAbbreviationTextView.text = rate.currency
+                currencyNameTextView.text = "US Dollars" 
                 rateTextView.text = "${rate.value}"
             }
         }
