@@ -38,8 +38,8 @@ class RatesAdapter : RecyclerView.Adapter<RatesAdapter.ViewHolder>() {
 
         fun bind(rate: Rate) {
             with(itemView) {
-                currencyAbbreviationTextView.text = rate.currency
-                currencyNameTextView.text = "US Dollars" 
+                currencyAbbreviationTextView.text = rate.currencyAbbreviation
+                currencyNameTextView.text = rate.currencyName
                 rateTextView.text = "${rate.value}"
             }
         }

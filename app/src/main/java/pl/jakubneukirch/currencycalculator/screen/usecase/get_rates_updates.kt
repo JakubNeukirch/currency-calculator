@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit
 interface IGetRatesUpdates : UseCase<UseCase.None, Observable<RatesTable>>
 
 /**
- * UseCase responsible for periodically update currency values
+ * UseCase responsible for periodically update currencyAbbreviation values
  */
 class GetRatesUpdates constructor(private val _currencyRepository: CurrencyRepository) : IGetRatesUpdates {
     override fun run(params: UseCase.None): Observable<RatesTable> {
