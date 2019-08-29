@@ -1,6 +1,7 @@
 package pl.jakubneukirch.currencycalculator.screen.usecase
 
 import io.reactivex.Observable
+import io.reactivex.schedulers.Schedulers
 import pl.jakubneukirch.currencycalculator.base.UseCase
 import pl.jakubneukirch.currencycalculator.data.model.view.RatesTable
 import pl.jakubneukirch.currencycalculator.data.repository.CurrencyRepository

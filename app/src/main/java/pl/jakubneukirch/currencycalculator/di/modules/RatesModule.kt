@@ -11,12 +11,13 @@ import pl.jakubneukirch.currencycalculator.base.ViewModelKey
 import pl.jakubneukirch.currencycalculator.screen.rates.RatesFragment
 import pl.jakubneukirch.currencycalculator.screen.rates.RatesViewModel
 import pl.jakubneukirch.currencycalculator.screen.usecase.GetRatesUpdates
+import pl.jakubneukirch.currencycalculator.screen.usecase.IGetRatesUpdates
 
 @Module(includes = [RatesModule.ProvideViewModel::class])
 abstract class RatesModule {
 
     @ContributesAndroidInjector(
-        modules = [RatesViewModel::class]
+        modules = [InjectViewModel::class]
     )
     abstract fun bind(): RatesFragment
 
@@ -37,7 +38,7 @@ abstract class RatesModule {
         @Provides
         @IntoMap
         @ViewModelKey(RatesViewModel::class)
-        fun provideRatesViewModel(getRatesUpdates: GetRatesUpdates): ViewModel {
+        fun provideRatesViewModel(getRatesUpdates: IGetRatesUpdates): ViewModel {
             return RatesViewModel(getRatesUpdates)
         }
     }
