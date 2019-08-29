@@ -1,4 +1,4 @@
-package pl.jakubneukirch.currencycalculator.screens.main
+package pl.jakubneukirch.currencycalculator.screen.main
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

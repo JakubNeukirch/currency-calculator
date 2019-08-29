@@ -1,4 +1,4 @@
-package pl.jakubneukirch.currencycalculator.screens.converter
+package pl.jakubneukirch.currencycalculator.screen.converter
 
 import pl.jakubneukirch.currencycalculator.base.BaseViewModel
 

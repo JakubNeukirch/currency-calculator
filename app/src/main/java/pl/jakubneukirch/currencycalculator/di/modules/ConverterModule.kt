@@ -8,8 +8,8 @@ import dagger.Provides
 import dagger.android.ContributesAndroidInjector
 import dagger.multibindings.IntoMap
 import pl.jakubneukirch.currencycalculator.base.ViewModelKey
-import pl.jakubneukirch.currencycalculator.screens.converter.ConverterFragment
-import pl.jakubneukirch.currencycalculator.screens.converter.ConverterViewModel
+import pl.jakubneukirch.currencycalculator.screen.converter.ConverterFragment
+import pl.jakubneukirch.currencycalculator.screen.converter.ConverterViewModel
 
 @Module(includes = [ConverterModule.ProvideViewModel::class])
 abstract class ConverterModule {
