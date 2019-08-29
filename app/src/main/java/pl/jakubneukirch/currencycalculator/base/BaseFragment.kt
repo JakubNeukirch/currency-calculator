@@ -29,5 +29,5 @@ abstract class BaseFragment<T : BaseViewModel>(private val _layoutId: Int): Frag
         setupScreen()
     }
 
-    protected fun setupScreen() = Unit
+    protected open fun setupScreen() = Unit
 }

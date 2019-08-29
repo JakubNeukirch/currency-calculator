@@ -17,7 +17,7 @@ abstract class ConverterModule {
     @ContributesAndroidInjector(
         modules = [InjectViewModel::class]
     )
-    abstract fun bind() : ConverterFragment
+    abstract fun bind(): ConverterFragment
 
     @Module
     class InjectViewModel {
@@ -36,7 +36,7 @@ abstract class ConverterModule {
         @Provides
         @IntoMap
         @ViewModelKey(ConverterViewModel::class)
-        fun provideConverterViewModel() : ViewModel {
+        fun provideConverterViewModel(): ViewModel {
             return ConverterViewModel()
         }
     }
