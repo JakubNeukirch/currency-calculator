@@ -3,26 +3,61 @@ package pl.jakubneukirch.currencycalculator.screen.converter
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import io.reactivex.rxkotlin.plusAssign
+import io.reactivex.rxkotlin.subscribeBy
 import pl.jakubneukirch.currencycalculator.base.BaseViewModel
 import pl.jakubneukirch.currencycalculator.base.UseCase
 import pl.jakubneukirch.currencycalculator.data.model.view.ConvertedCurrency
+import pl.jakubneukirch.currencycalculator.data.model.view.RatesTable
+import pl.jakubneukirch.currencycalculator.usecase.IConvertValues
 import pl.jakubneukirch.currencycalculator.usecase.IGetRatesUpdates
+import pl.jakubneukirch.currencycalculator.utils.useStandardSchedulers
+import timber.log.Timber
 
-class ConverterViewModel(private val _getRatesUpdates: IGetRatesUpdates) : BaseViewModel() {
+class ConverterViewModel(
+    private val _getRatesUpdates: IGetRatesUpdates,
+    private val _convertValues: IConvertValues
+) : BaseViewModel() {
 
-    private val _convertedCurrencies = MutableLiveData<ConvertedCurrency>()
-    val convertedCurrencies: LiveData<ConvertedCurrency>
+    private val _convertedCurrencies = MutableLiveData<List<ConvertedCurrency>>()
+    val convertedCurrencies: LiveData<List<ConvertedCurrency>>
         get() = _convertedCurrencies
 
-    private var _sourceCurrency: ConvertedCurrency? = null
+    private lateinit var _ratesTable: RatesTable
+    private lateinit var _sourceCurrency: ConvertedCurrency
 
-    fun setSourceRateValue(currency: ConvertedCurrency) {
+    fun listenToRatesChanges() {
+        onStopDisposables += _getRatesUpdates(UseCase.None)
+            .useStandardSchedulers()
+            .subscribeBy(
+                onNext = { ratesTable ->
+                    _ratesTable = ratesTable
+                    _sourceCurrency = ConvertedCurrency(
+                        ratesTable.baseCurrency,
+                        ratesTable.baseCurrency.rate
+                    )
+                    calculateValues()
+                },
+                onError = {
+                    Timber.e(it)
+                }
+            )
+    }
+
+    fun setSourceCurrency(currency: ConvertedCurrency) {
         _sourceCurrency = currency
-
+        calculateValues()
     }
 
     private fun calculateValues() {
-        onStopDisposables += _getRatesUpdates(UseCase.None)
-            .subscribe()
+        onStopDisposables += _convertValues(IConvertValues.Params(_sourceCurrency, _ratesTable))
+            .useStandardSchedulers()
+            .subscribeBy(
+                onSuccess = { converted ->
+                    _convertedCurrencies.value = converted
+                },
+                onError = {
+                    Timber.e(it)
+                }
+            )
     }
 }
