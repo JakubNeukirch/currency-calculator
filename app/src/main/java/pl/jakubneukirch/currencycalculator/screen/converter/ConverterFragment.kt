@@ -1,7 +1,9 @@
 package pl.jakubneukirch.currencycalculator.screen.converter
 
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.fragment_converter.*
 import pl.jakubneukirch.currencycalculator.R
 import pl.jakubneukirch.currencycalculator.base.BaseFragment
@@ -32,6 +34,7 @@ class ConverterFragment : BaseFragment<ConverterViewModel>(R.layout.fragment_con
         _converterAdapter.onCurrencyChanged = { chosenCurrency ->
             viewModel.setSourceCurrency(chosenCurrency)
         }
+        converterRecyclerView.itemAnimator = DefaultItemAnimator().apply { supportsChangeAnimations = false }
         converterRecyclerView.adapter = _converterAdapter
         converterRecyclerView.layoutManager = LinearLayoutManager(requireContext())
     }

@@ -2,7 +2,6 @@ package pl.jakubneukirch.currencycalculator.screen.converter
 
 import androidx.recyclerview.widget.DiffUtil
 import pl.jakubneukirch.currencycalculator.data.model.view.ConvertedCurrency
-import timber.log.Timber
 
 class ConverterDiffUtil(
     private val _oldList: List<ConvertedCurrency>,
@@ -12,10 +11,6 @@ class ConverterDiffUtil(
     override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
         val oldCurrency = _oldList[oldItemPosition].currency
         val newCurrency = _newList[newItemPosition].currency
-        if(oldCurrency.abbreviation == "EUR") {
-            Timber.i("old ${_oldList[oldItemPosition]}")
-            Timber.i("new ${_newList[newItemPosition]}")
-        }
         return oldCurrency.abbreviation == newCurrency.abbreviation
     }
 
@@ -30,6 +25,13 @@ class ConverterDiffUtil(
     }
 
     override fun getChangePayload(oldItemPosition: Int, newItemPosition: Int): Any? {
+        val oldCurrency = _oldList[oldItemPosition]
+        val newCurrency = _newList[newItemPosition]
         return super.getChangePayload(oldItemPosition, newItemPosition)
+    }
+
+    enum class ChangedPayload {
+        Flag,
+        Value
     }
 }
