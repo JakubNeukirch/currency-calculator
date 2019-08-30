@@ -53,7 +53,12 @@ class ConverterAdapter : RecyclerView.Adapter<ConverterAdapter.ViewHolder>() {
                     after: Int
                 ) = Unit
 
-                override fun onTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {
+                override fun onTextChanged(
+                    text: CharSequence?,
+                    start: Int,
+                    before: Int,
+                    count: Int
+                ) {
                     if (itemView.rateEditText.isFocused) {
                         text?.toString()?.toDoubleOrNull()?.also { value ->
                             _convertedCurrencies[adapterPosition].value = value
@@ -69,6 +74,7 @@ class ConverterAdapter : RecyclerView.Adapter<ConverterAdapter.ViewHolder>() {
                 currencyAbbreviationTextView.text = convertedCurrency.currency.abbreviation
                 currencyNameTextView.text = convertedCurrency.currency.name
                 rateEditText.setText("${convertedCurrency.value}")
+                itemView.currencyFlagImageView.setImageResource(convertedCurrency.currency.flagId)
             }
         }
     }

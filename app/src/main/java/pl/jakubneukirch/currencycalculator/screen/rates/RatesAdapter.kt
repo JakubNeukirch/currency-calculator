@@ -42,6 +42,7 @@ class RatesAdapter : RecyclerView.Adapter<RatesAdapter.ViewHolder>() {
                 currencyAbbreviationTextView.text = currency.abbreviation
                 currencyNameTextView.text = currency.name
                 rateEditText.setText("${currency.rate.roundDecimalPlace()}")
+                itemView.currencyFlagImageView.setImageResource(currency.flagId)
             }
         }
     }
