@@ -12,6 +12,12 @@ interface IConvertValues : UseCase<IConvertValues.Params, Single<List<ConvertedR
     )
 }
 
+/**
+ * UseCase which converts currency values based on sourceRate which is currency on which should be
+ * based further calculations.
+ * @param sourceRate    ConvertedRate on which calculations are based
+ * @param rates         RatesTable with current currency values
+ */
 class ConvertValues : IConvertValues {
     override fun run(params: IConvertValues.Params): Single<List<ConvertedRate>> {
         return Single.create {
