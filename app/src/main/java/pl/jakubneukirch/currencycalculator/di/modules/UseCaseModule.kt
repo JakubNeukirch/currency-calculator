@@ -3,8 +3,8 @@ package pl.jakubneukirch.currencycalculator.di.modules
 import dagger.Module
 import dagger.Provides
 import pl.jakubneukirch.currencycalculator.data.repository.CurrencyRepository
-import pl.jakubneukirch.currencycalculator.screen.usecase.GetRatesUpdates
-import pl.jakubneukirch.currencycalculator.screen.usecase.IGetRatesUpdates
+import pl.jakubneukirch.currencycalculator.usecase.GetRatesUpdates
+import pl.jakubneukirch.currencycalculator.usecase.IGetRatesUpdates
 import javax.inject.Singleton
 
 @Module

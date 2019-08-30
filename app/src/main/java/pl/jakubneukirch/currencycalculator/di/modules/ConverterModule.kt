@@ -10,6 +10,7 @@ import dagger.multibindings.IntoMap
 import pl.jakubneukirch.currencycalculator.base.ViewModelKey
 import pl.jakubneukirch.currencycalculator.screen.converter.ConverterFragment
 import pl.jakubneukirch.currencycalculator.screen.converter.ConverterViewModel
+import pl.jakubneukirch.currencycalculator.usecase.IGetRatesUpdates
 
 @Module(includes = [ConverterModule.ProvideViewModel::class])
 abstract class ConverterModule {
@@ -36,8 +37,8 @@ abstract class ConverterModule {
         @Provides
         @IntoMap
         @ViewModelKey(ConverterViewModel::class)
-        fun provideConverterViewModel(): ViewModel {
-            return ConverterViewModel()
+        fun provideConverterViewModel(getRatesUpdates: IGetRatesUpdates): ViewModel {
+            return ConverterViewModel(getRatesUpdates)
         }
     }
 }

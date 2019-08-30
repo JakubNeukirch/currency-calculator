@@ -1,4 +1,4 @@
-package pl.jakubneukirch.currencycalculator.screen.usecase
+package pl.jakubneukirch.currencycalculator.usecase
 
 import io.reactivex.Observable
 import pl.jakubneukirch.currencycalculator.base.UseCase

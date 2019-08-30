@@ -12,7 +12,7 @@ import pl.jakubneukirch.currencycalculator.base.UseCase
 import pl.jakubneukirch.currencycalculator.data.model.view.Rate
 import pl.jakubneukirch.currencycalculator.data.model.view.RatesTable
 import pl.jakubneukirch.currencycalculator.screen.rates.RatesViewModel
-import pl.jakubneukirch.currencycalculator.screen.usecase.IGetRatesUpdates
+import pl.jakubneukirch.currencycalculator.usecase.IGetRatesUpdates
 
 class RatesViewModelTest : BaseViewModelTest<RatesViewModel>() {
     override lateinit var viewModel: RatesViewModel

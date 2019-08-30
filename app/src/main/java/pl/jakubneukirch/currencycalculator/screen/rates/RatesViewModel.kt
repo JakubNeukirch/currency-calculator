@@ -7,7 +7,7 @@ import io.reactivex.rxkotlin.subscribeBy
 import pl.jakubneukirch.currencycalculator.base.BaseViewModel
 import pl.jakubneukirch.currencycalculator.base.UseCase
 import pl.jakubneukirch.currencycalculator.data.model.view.RatesTable
-import pl.jakubneukirch.currencycalculator.screen.usecase.IGetRatesUpdates
+import pl.jakubneukirch.currencycalculator.usecase.IGetRatesUpdates
 import pl.jakubneukirch.currencycalculator.utils.useStandardSchedulers
 import timber.log.Timber
 
