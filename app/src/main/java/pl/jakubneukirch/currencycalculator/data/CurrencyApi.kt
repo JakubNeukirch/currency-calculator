@@ -8,7 +8,7 @@ import retrofit2.http.Query
 interface CurrencyApi {
     /**
      * Gets latest rates of currencies.
-     * @param base  defines currencyAbbreviation on which values will be based
+     * @param base  defines currency on which values will be based
      */
     @GET("latest")
     fun getLatestRates(@Query("base") base: String = DEFAULT_CURRENCY): Single<RatesResponse>

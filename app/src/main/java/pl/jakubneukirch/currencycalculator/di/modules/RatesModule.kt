@@ -10,8 +10,7 @@ import dagger.multibindings.IntoMap
 import pl.jakubneukirch.currencycalculator.base.ViewModelKey
 import pl.jakubneukirch.currencycalculator.screen.rates.RatesFragment
 import pl.jakubneukirch.currencycalculator.screen.rates.RatesViewModel
-import pl.jakubneukirch.currencycalculator.screen.usecase.GetRatesUpdates
-import pl.jakubneukirch.currencycalculator.screen.usecase.IGetRatesUpdates
+import pl.jakubneukirch.currencycalculator.usecase.IGetRatesUpdates
 
 @Module(includes = [RatesModule.ProvideViewModel::class])
 abstract class RatesModule {

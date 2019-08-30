@@ -17,7 +17,7 @@ class RatesFragment: BaseFragment<RatesViewModel>(R.layout.fragment_rates) {
 
     private fun subscribeToData() {
         viewModel.ratesTable.observe(this, Observer { ratesTable ->
-            _ratesAdapter.rates = ratesTable.allRates
+            _ratesAdapter.currencies = ratesTable.allCurrencies
         })
     }
 

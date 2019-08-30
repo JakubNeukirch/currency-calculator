@@ -1,4 +1,4 @@
-package pl.jakubneukirch.currencycalculator.screen.usecase
+package pl.jakubneukirch.currencycalculator.usecase
 
 import io.reactivex.Observable
 import pl.jakubneukirch.currencycalculator.base.UseCase
@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit
 interface IGetRatesUpdates : UseCase<UseCase.None, Observable<RatesTable>>
 
 /**
- * UseCase responsible for periodically update currencyAbbreviation values
+ * UseCase responsible for periodically update currency values
  */
 class GetRatesUpdates constructor(private val _currencyRepository: CurrencyRepository) : IGetRatesUpdates {
     override fun run(params: UseCase.None): Observable<RatesTable> {
