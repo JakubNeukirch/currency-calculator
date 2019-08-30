@@ -29,18 +29,18 @@ class ConverterViewModel(
         onStopDisposables += _getRatesUpdates(UseCase.None)
             .useStandardSchedulers()
             .subscribeBy(
-                onNext = { ratesTable ->
-                    _ratesTable = ratesTable
-                    _sourceCurrency = _sourceCurrency ?: ConvertedCurrency(
-                        ratesTable.baseCurrency,
-                        ratesTable.baseCurrency.rate
-                    )
-                    calculateValues()
-                },
-                onError = {
-                    Timber.e(it)
-                }
+                onNext = ::setRatesTable,
+                onError = Timber::e
             )
+    }
+
+    private fun setRatesTable(ratesTable: RatesTable) {
+        _ratesTable = ratesTable
+        _sourceCurrency = _sourceCurrency ?: ConvertedCurrency(
+            ratesTable.baseCurrency,
+            ratesTable.baseCurrency.rate
+        )
+        calculateValues()
     }
 
     fun setSourceCurrency(currency: ConvertedCurrency) {
@@ -52,12 +52,8 @@ class ConverterViewModel(
         onStopDisposables += _convertValues(IConvertValues.Params(_sourceCurrency!!, _ratesTable))
             .useStandardSchedulers()
             .subscribeBy(
-                onSuccess = { converted ->
-                    _convertedCurrencies.value = converted
-                },
-                onError = {
-                    Timber.e(it)
-                }
+                onSuccess = _convertedCurrencies::setValue,
+                onError = Timber::e
             )
     }
 }
