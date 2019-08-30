@@ -29,8 +29,8 @@ class ConvertValuesTest : BaseUseCaseTest<IConvertValues>() {
         val sourceCurrency = ConvertedCurrency(currencyPln, 7.33)
 
         val expectedCurrencies = listOf(
-            ConvertedCurrency(currencyEur, 1.70),
             ConvertedCurrency(currencyPln, 7.33),
+            ConvertedCurrency(currencyEur, 1.70),
             ConvertedCurrency(currencyAud, 2.74)
         )
 
