@@ -2,8 +2,17 @@ package pl.jakubneukirch.currencycalculator.data.model.view
 
 import pl.jakubneukirch.currencycalculator.data.model.api.RatesResponse
 
+/**
+ * Table with current rates of currencies
+ */
 data class RatesTable(
+    /**
+     * Currency on which rates are based
+     */
     val baseCurrency: Currency,
+    /**
+     * Actual currency rates
+     */
     val currencies: List<Currency>
 ) {
 

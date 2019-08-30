@@ -3,7 +3,7 @@ package pl.jakubneukirch.currencycalculator.data.model.view
 /**
  * Currency and value and its converted value
  */
-class ConvertedCurrency(
+data class ConvertedCurrency(
     /**
      * Currency and its data
      */
