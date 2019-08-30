@@ -21,7 +21,7 @@ abstract class BaseFragment<T : BaseViewModel>(private val _layoutId: Int): Frag
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(_layoutId, container)
+        return inflater.inflate(_layoutId, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

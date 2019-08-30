@@ -31,28 +31,13 @@
                 android:id="@+id/mainTabLayout"
                 app:tabTextAppearance="@style/AppTheme.TabItemText"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-            <com.google.android.material.tabs.TabItem
-                    android:id="@+id/allRatesTab"
-                    android:text="@string/main_all_rates"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-
-            <com.google.android.material.tabs.TabItem
-                    android:id="@+id/converterTab"
-                    android:text="@string/main_converter"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-
-        </com.google.android.material.tabs.TabLayout>
+                android:layout_height="wrap_content"/>
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <fragment
-            android:id="@+id/ratesFragment"
+    <androidx.viewpager.widget.ViewPager
+            android:id="@+id/mainViewPager"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            android:name="pl.jakubneukirch.currencycalculator.screen.rates.RatesFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 
