@@ -5,6 +5,7 @@ import pl.jakubneukirch.currencycalculator.base.UseCase
 import pl.jakubneukirch.currencycalculator.data.model.view.ConvertedCurrency
 import pl.jakubneukirch.currencycalculator.data.model.view.RatesTable
 import pl.jakubneukirch.currencycalculator.utils.roundDecimalPlace
+import timber.log.Timber
 
 interface IConvertValues : UseCase<IConvertValues.Params, Single<List<ConvertedCurrency>>> {
     data class Params(
@@ -39,7 +40,11 @@ class ConvertValues : IConvertValues {
         sourceCurrency: ConvertedCurrency,
         rates: RatesTable
     ): List<ConvertedCurrency> {
-        val baseRateValue = sourceCurrency.value / sourceCurrency.currency.rate
+        val allCurrencies = rates.allCurrencies
+        val sourceCurrencyRate = allCurrencies
+            .find { currency -> currency.abbreviation == sourceCurrency.currency.abbreviation }!!
+            .rate
+        val baseRateValue = sourceCurrency.value / sourceCurrencyRate
         return rates.allCurrencies
             .asSequence()
             .filter { currency -> currency.abbreviation != sourceCurrency.currency.abbreviation }

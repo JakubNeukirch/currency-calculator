@@ -29,7 +29,7 @@ class ConverterFragment : BaseFragment<ConverterViewModel>(R.layout.fragment_con
     }
 
     private fun setupConverterRecyclerView() {
-        _converterAdapter.onCurrencyChosen = { chosenCurrency ->
+        _converterAdapter.onCurrencyChanged = { chosenCurrency ->
             viewModel.setSourceCurrency(chosenCurrency)
         }
         converterRecyclerView.adapter = _converterAdapter

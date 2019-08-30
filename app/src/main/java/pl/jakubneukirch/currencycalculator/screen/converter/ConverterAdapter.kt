@@ -1,5 +1,7 @@
 package pl.jakubneukirch.currencycalculator.screen.converter
 
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,7 +15,7 @@ class ConverterAdapter : RecyclerView.Adapter<ConverterAdapter.ViewHolder>() {
 
     private var _convertedCurrencies: List<ConvertedCurrency> = listOf()
 
-    var onCurrencyChosen: (convertedCurrency: ConvertedCurrency) -> Unit = {}
+    var onCurrencyChanged: (convertedCurrency: ConvertedCurrency) -> Unit = {}
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
@@ -27,10 +29,10 @@ class ConverterAdapter : RecyclerView.Adapter<ConverterAdapter.ViewHolder>() {
         holder.bind(_convertedCurrencies[position])
     }
 
-     fun setConvertedCurrencies(convertedCurrencies: List<ConvertedCurrency>) {
+    fun setConvertedCurrencies(convertedCurrencies: List<ConvertedCurrency>) {
         val oldList = _convertedCurrencies
         _convertedCurrencies = convertedCurrencies
-        DiffUtil.calculateDiff(ConverterDiffUtil(oldList,_convertedCurrencies), true)
+        DiffUtil.calculateDiff(ConverterDiffUtil(oldList, _convertedCurrencies), true)
             .dispatchUpdatesTo(this)
     }
 
@@ -39,8 +41,27 @@ class ConverterAdapter : RecyclerView.Adapter<ConverterAdapter.ViewHolder>() {
         init {
             itemView.rateEditText.isEnabled = true
             itemView.setOnClickListener { view ->
-                onCurrencyChosen(_convertedCurrencies[adapterPosition])
+                onCurrencyChanged(_convertedCurrencies[adapterPosition])
+                view.requestFocus()
             }
+            itemView.rateEditText.addTextChangedListener(object : TextWatcher {
+                override fun afterTextChanged(s: Editable?) = Unit
+                override fun beforeTextChanged(
+                    s: CharSequence?,
+                    start: Int,
+                    count: Int,
+                    after: Int
+                ) = Unit
+
+                override fun onTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {
+                    if (itemView.rateEditText.isFocused) {
+                        text?.toString()?.toDoubleOrNull()?.also { value ->
+                            _convertedCurrencies[adapterPosition].value = value
+                        }
+                        onCurrencyChanged(_convertedCurrencies[adapterPosition])
+                    }
+                }
+            })
         }
 
         fun bind(convertedCurrency: ConvertedCurrency) {
