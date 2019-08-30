@@ -29,5 +29,15 @@ abstract class BaseFragment<T : BaseViewModel>(private val _layoutId: Int): Frag
         setupScreen()
     }
 
+    override fun onStart() {
+        super.onStart()
+        viewModel.onStart()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        viewModel.onStop()
+    }
+
     protected open fun setupScreen() = Unit
 }
