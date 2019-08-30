@@ -1,13 +1,13 @@
 package pl.jakubneukirch.currencycalculator.data.model.view
 
 /**
- * Rate and value and its converted value
+ * Currency and value and its converted value
  */
-class ConvertedRate(
+class ConvertedCurrency(
     /**
-     * Currency rate
+     * Currency and its data
      */
-    val rate: Rate,
+    val currency: Currency,
     /**
      * Converted value of currency based
      */

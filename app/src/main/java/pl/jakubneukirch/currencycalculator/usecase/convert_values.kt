@@ -2,44 +2,44 @@ package pl.jakubneukirch.currencycalculator.usecase
 
 import io.reactivex.Single
 import pl.jakubneukirch.currencycalculator.base.UseCase
-import pl.jakubneukirch.currencycalculator.data.model.view.ConvertedRate
+import pl.jakubneukirch.currencycalculator.data.model.view.ConvertedCurrency
 import pl.jakubneukirch.currencycalculator.data.model.view.RatesTable
 
-interface IConvertValues : UseCase<IConvertValues.Params, Single<List<ConvertedRate>>> {
+interface IConvertValues : UseCase<IConvertValues.Params, Single<List<ConvertedCurrency>>> {
     data class Params(
-        val sourceRate: ConvertedRate,
+        val sourceCurrency: ConvertedCurrency,
         val rates: RatesTable
     )
 }
 
 /**
- * UseCase which converts currency values based on sourceRate which is currency on which should be
+ * UseCase which converts currency values based on sourceCurrency which is currency on which should be
  * based further calculations.
- * @param sourceRate    ConvertedRate on which calculations are based
+ * @param sourceCurrency    ConvertedCurrency on which calculations are based
  * @param rates         RatesTable with current currency values
  */
 class ConvertValues : IConvertValues {
-    override fun run(params: IConvertValues.Params): Single<List<ConvertedRate>> {
+    override fun run(params: IConvertValues.Params): Single<List<ConvertedCurrency>> {
         return Single.create {
             try {
-                val convertedRates: List<ConvertedRate> = convertValues(
-                    params.sourceRate,
+                val convertedCurrencies: List<ConvertedCurrency> = convertValues(
+                    params.sourceCurrency,
                     params.rates
                 )
 
-                it.onSuccess(convertedRates)
+                it.onSuccess(convertedCurrencies)
             } catch (ex: Exception) {
                 it.onError(ex)
             }
         }
     }
 
-    private fun convertValues(sourceRate: ConvertedRate, rates: RatesTable): List<ConvertedRate> {
-        val baseRateValue = sourceRate.value / sourceRate.rate.value
-        return rates.allRates.map { rate ->
-            ConvertedRate(
-                rate = rate,
-                value = baseRateValue * rate.value
+    private fun convertValues(sourceCurrency: ConvertedCurrency, rates: RatesTable): List<ConvertedCurrency> {
+        val baseRateValue = sourceCurrency.value / sourceCurrency.currency.rate
+        return rates.allCurrencies.map { currency ->
+            ConvertedCurrency(
+                currency = currency,
+                value = baseRateValue * currency.rate
             )
         }
     }

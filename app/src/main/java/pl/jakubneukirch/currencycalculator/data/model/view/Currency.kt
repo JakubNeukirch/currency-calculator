@@ -1,18 +1,18 @@
 package pl.jakubneukirch.currencycalculator.data.model.view
 
-data class Rate(
+data class Currency(
     val currencyAbbreviation: String,
-    val value: Double,
+    val rate: Double,
     val currencyName: String = "US Dollars", //todo set real name
     val currencyFlag: String = ""
 ) {
     companion object {
         private const val BASE_VALUE = 1.0
 
-        fun baseRate(name: String): Rate {
-            return Rate(
+        fun baseRate(name: String): Currency {
+            return Currency(
                 currencyAbbreviation = name,
-                value = BASE_VALUE
+                rate = BASE_VALUE
             )
         }
     }

@@ -51,8 +51,11 @@
             android:layout_height="wrap_content"/>
 
     <EditText
-            android:id="@+id/rateTextView"
+            android:id="@+id/rateEditText"
             style="@style/TextAppearance.AppCompat.Large"
+            android:importantForAutofill="no"
+            android:hint="@string/currency_value_hint"
+            android:inputType="numberDecimal"
             android:minWidth="@dimen/rate_value_min_width"
             android:layout_margin="@dimen/rate_value_margin"
             android:layout_width="wrap_content"

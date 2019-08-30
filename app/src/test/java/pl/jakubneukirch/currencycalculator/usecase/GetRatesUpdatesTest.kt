@@ -8,7 +8,7 @@ import io.reactivex.schedulers.TestScheduler
 import org.junit.Test
 import pl.jakubneukirch.currencycalculator.base.BaseUseCaseTest
 import pl.jakubneukirch.currencycalculator.base.UseCase
-import pl.jakubneukirch.currencycalculator.data.model.view.Rate
+import pl.jakubneukirch.currencycalculator.data.model.view.Currency
 import pl.jakubneukirch.currencycalculator.data.model.view.RatesTable
 import pl.jakubneukirch.currencycalculator.data.repository.CurrencyRepository
 import java.util.concurrent.TimeUnit
@@ -27,7 +27,7 @@ class GetRatesUpdatesTest:BaseUseCaseTest<IGetRatesUpdates>() {
     fun `should update 3 times`() {
         val testScheduler = TestScheduler()
         RxJavaPlugins.setComputationSchedulerHandler { testScheduler }
-        val inputData = RatesTable(Rate("EUR", 1.0), listOf())
+        val inputData = RatesTable(Currency("EUR", 1.0), listOf())
 
         every { _currencyRepository.getRates() } returns Single.just(inputData)
 

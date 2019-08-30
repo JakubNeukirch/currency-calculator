@@ -8,7 +8,7 @@ import org.junit.Test
 import pl.jakubneukirch.currencycalculator.base.BaseRepositoryTest
 import pl.jakubneukirch.currencycalculator.data.CurrencyApi
 import pl.jakubneukirch.currencycalculator.data.model.api.RatesResponse
-import pl.jakubneukirch.currencycalculator.data.model.view.Rate
+import pl.jakubneukirch.currencycalculator.data.model.view.Currency
 import pl.jakubneukirch.currencycalculator.data.model.view.RatesTable
 import pl.jakubneukirch.currencycalculator.data.repository.CurrencyRepository
 import java.net.SocketException
@@ -28,10 +28,10 @@ class CurrencyRepositoryTest: BaseRepositoryTest<CurrencyRepository>() {
     fun `should correctly map data`() {
         val inputData = RatesResponse("EUR", Date(), mapOf("PLN" to 4.3, "AUD" to 1.6))
         val expectedData = RatesTable(
-            Rate("EUR", 1.0),
+            Currency("EUR", 1.0),
             listOf(
-                Rate("PLN", 4.3),
-                Rate("AUD", 1.6)
+                Currency("PLN", 4.3),
+                Currency("AUD", 1.6)
             )
         )
 
