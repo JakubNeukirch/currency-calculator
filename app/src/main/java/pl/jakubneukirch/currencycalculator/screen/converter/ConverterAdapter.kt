@@ -1,7 +1,5 @@
 package pl.jakubneukirch.currencycalculator.screen.converter
 
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_currency.view.*
 import pl.jakubneukirch.currencycalculator.R
 import pl.jakubneukirch.currencycalculator.data.model.view.ConvertedCurrency
+import pl.jakubneukirch.currencycalculator.utils.android.TextChangedListener
 
 class ConverterAdapter : RecyclerView.Adapter<ConverterAdapter.ViewHolder>() {
 
@@ -44,27 +43,12 @@ class ConverterAdapter : RecyclerView.Adapter<ConverterAdapter.ViewHolder>() {
                 onCurrencyChanged(_convertedCurrencies[adapterPosition])
                 view.requestFocus()
             }
-            itemView.rateEditText.addTextChangedListener(object : TextWatcher {
-                override fun afterTextChanged(s: Editable?) = Unit
-                override fun beforeTextChanged(
-                    s: CharSequence?,
-                    start: Int,
-                    count: Int,
-                    after: Int
-                ) = Unit
-
-                override fun onTextChanged(
-                    text: CharSequence?,
-                    start: Int,
-                    before: Int,
-                    count: Int
-                ) {
-                    if (itemView.rateEditText.isFocused) {
-                        text?.toString()?.toDoubleOrNull()?.also { value ->
-                            _convertedCurrencies[adapterPosition].value = value
-                        }
-                        onCurrencyChanged(_convertedCurrencies[adapterPosition])
+            itemView.rateEditText.addTextChangedListener(TextChangedListener { text ->
+                if (itemView.rateEditText.isFocused) {
+                    text.toDoubleOrNull()?.also { value ->
+                        _convertedCurrencies[adapterPosition].value = value
                     }
+                    onCurrencyChanged(_convertedCurrencies[adapterPosition])
                 }
             })
         }
