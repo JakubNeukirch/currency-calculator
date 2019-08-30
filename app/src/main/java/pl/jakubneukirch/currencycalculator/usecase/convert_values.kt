@@ -40,19 +40,22 @@ class ConvertValues : IConvertValues {
         rates: RatesTable
     ): List<ConvertedCurrency> {
         val baseRateValue = sourceCurrency.value / sourceCurrency.currency.rate
-        return rates.allCurrencies.map { currency ->
-            return@map if (currency == sourceCurrency.currency) {
-                sourceCurrency
-            } else {
+        return rates.allCurrencies
+            .asSequence()
+            .filter { currency -> currency.abbreviation != sourceCurrency.currency.abbreviation }
+            .map { currency ->
                 ConvertedCurrency(
                     currency = currency,
                     value = convertValue(baseRateValue, currency.rate)
                 )
             }
-        }
+            .toMutableList()
+            .apply {
+                add(0, sourceCurrency)
+            }
     }
 
-    private fun convertValue(baseRateValue: Double, currencyRate: Double) : Double {
+    private fun convertValue(baseRateValue: Double, currencyRate: Double): Double {
         return (baseRateValue * currencyRate).roundDecimalPlace()
     }
 }

@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_converter.*
 import pl.jakubneukirch.currencycalculator.R
 import pl.jakubneukirch.currencycalculator.base.BaseFragment
+import timber.log.Timber
 
 class ConverterFragment : BaseFragment<ConverterViewModel>(R.layout.fragment_converter) {
 

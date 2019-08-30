@@ -23,7 +23,7 @@ class ConverterViewModel(
         get() = _convertedCurrencies
 
     private lateinit var _ratesTable: RatesTable
-    private lateinit var _sourceCurrency: ConvertedCurrency
+    private var _sourceCurrency: ConvertedCurrency? = null
 
     fun listenToRatesChanges() {
         onStopDisposables += _getRatesUpdates(UseCase.None)
@@ -31,7 +31,7 @@ class ConverterViewModel(
             .subscribeBy(
                 onNext = { ratesTable ->
                     _ratesTable = ratesTable
-                    _sourceCurrency = ConvertedCurrency(
+                    _sourceCurrency = _sourceCurrency ?: ConvertedCurrency(
                         ratesTable.baseCurrency,
                         ratesTable.baseCurrency.rate
                     )
@@ -49,7 +49,7 @@ class ConverterViewModel(
     }
 
     private fun calculateValues() {
-        onStopDisposables += _convertValues(IConvertValues.Params(_sourceCurrency, _ratesTable))
+        onStopDisposables += _convertValues(IConvertValues.Params(_sourceCurrency!!, _ratesTable))
             .useStandardSchedulers()
             .subscribeBy(
                 onSuccess = { converted ->
