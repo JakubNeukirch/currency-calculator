@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.item_rate.view.*
+import kotlinx.android.synthetic.main.item_currency.view.*
 import pl.jakubneukirch.currencycalculator.R
 import pl.jakubneukirch.currencycalculator.data.model.view.Currency
 import pl.jakubneukirch.currencycalculator.utils.roundDecimalPlace
@@ -22,7 +22,7 @@ class RatesAdapter : RecyclerView.Adapter<RatesAdapter.ViewHolder>() {
         val view = LayoutInflater
             .from(parent.context)
             .inflate(
-                R.layout.item_rate,
+                R.layout.item_currency,
                 parent,
                 false
             )
@@ -39,8 +39,8 @@ class RatesAdapter : RecyclerView.Adapter<RatesAdapter.ViewHolder>() {
 
         fun bind(currency: Currency) {
             with(itemView) {
-                currencyAbbreviationTextView.text = currency.currencyAbbreviation
-                currencyNameTextView.text = currency.currencyName
+                currencyAbbreviationTextView.text = currency.abbreviation
+                currencyNameTextView.text = currency.name
                 rateEditText.setText("${currency.rate.roundDecimalPlace()}")
             }
         }
