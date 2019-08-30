@@ -35,7 +35,7 @@ class ConverterAdapter : RecyclerView.Adapter<ConverterAdapter.ViewHolder>() {
 
         init {
             itemView.rateEditText.isEnabled = true
-            itemView.setOnClickListener {
+            itemView.setOnClickListener { view ->
                 moveToFirstPosition()
                 onCurrencyChosen(convertedCurrencies[adapterPosition])
             }
@@ -52,8 +52,9 @@ class ConverterAdapter : RecyclerView.Adapter<ConverterAdapter.ViewHolder>() {
         private fun moveToFirstPosition() {
             if (layoutPosition != 0) {
                 convertedCurrencies.move(layoutPosition, 0)
+                notifyItemMoved(layoutPosition, 0)
+
             }
-            notifyItemMoved(layoutPosition, 0)
         }
     }
 }
