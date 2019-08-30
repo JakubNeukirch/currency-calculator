@@ -3,19 +3,15 @@ package pl.jakubneukirch.currencycalculator.screen.converter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_currency.view.*
 import pl.jakubneukirch.currencycalculator.R
 import pl.jakubneukirch.currencycalculator.data.model.view.ConvertedCurrency
-import pl.jakubneukirch.currencycalculator.utils.move
 
 class ConverterAdapter : RecyclerView.Adapter<ConverterAdapter.ViewHolder>() {
 
-    var convertedCurrencies: MutableList<ConvertedCurrency> = mutableListOf()
-        set(value) {
-            field = value
-            notifyDataSetChanged()
-        }
+    private var _convertedCurrencies: List<ConvertedCurrency> = listOf()
 
     var onCurrencyChosen: (convertedCurrency: ConvertedCurrency) -> Unit = {}
 
@@ -25,10 +21,17 @@ class ConverterAdapter : RecyclerView.Adapter<ConverterAdapter.ViewHolder>() {
         )
     }
 
-    override fun getItemCount(): Int = convertedCurrencies.size
+    override fun getItemCount(): Int = _convertedCurrencies.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(convertedCurrencies[position])
+        holder.bind(_convertedCurrencies[position])
+    }
+
+     fun setConvertedCurrencies(convertedCurrencies: List<ConvertedCurrency>) {
+        val oldList = _convertedCurrencies
+        _convertedCurrencies = convertedCurrencies
+        DiffUtil.calculateDiff(ConverterDiffUtil(oldList,_convertedCurrencies), true)
+            .dispatchUpdatesTo(this)
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -36,8 +39,7 @@ class ConverterAdapter : RecyclerView.Adapter<ConverterAdapter.ViewHolder>() {
         init {
             itemView.rateEditText.isEnabled = true
             itemView.setOnClickListener { view ->
-                moveToFirstPosition()
-                onCurrencyChosen(convertedCurrencies[adapterPosition])
+                onCurrencyChosen(_convertedCurrencies[adapterPosition])
             }
         }
 
@@ -46,14 +48,6 @@ class ConverterAdapter : RecyclerView.Adapter<ConverterAdapter.ViewHolder>() {
                 currencyAbbreviationTextView.text = convertedCurrency.currency.abbreviation
                 currencyNameTextView.text = convertedCurrency.currency.name
                 rateEditText.setText("${convertedCurrency.value}")
-            }
-        }
-
-        private fun moveToFirstPosition() {
-            if (layoutPosition != 0) {
-                convertedCurrencies.move(layoutPosition, 0)
-                notifyItemMoved(layoutPosition, 0)
-
             }
         }
     }

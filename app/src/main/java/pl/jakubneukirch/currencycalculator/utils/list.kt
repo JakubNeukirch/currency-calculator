@@ -7,6 +7,7 @@ package pl.jakubneukirch.currencycalculator.utils
  * @param to    index of position to which element should be moved
  */
 fun <T> MutableList<T>.move(from: Int, to: Int) {
-    val element = removeAt(from)
-    add(to, element)
+    removeAt(from).also { element ->
+        add(to, element)
+    }
 }

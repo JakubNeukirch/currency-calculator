@@ -24,7 +24,7 @@ class ConverterFragment : BaseFragment<ConverterViewModel>(R.layout.fragment_con
 
     private fun subscribeToData() {
         viewModel.convertedCurrencies.observe(this, Observer { convertedCurrencies ->
-            _converterAdapter.convertedCurrencies = convertedCurrencies.toMutableList()
+            _converterAdapter.setConvertedCurrencies(convertedCurrencies)
         })
     }
 
