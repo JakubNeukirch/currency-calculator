@@ -7,7 +7,7 @@ abstract class BaseViewModel : ViewModel() {
     protected val disposables = CompositeDisposable()
     /**
      * all Disposables which are added to this CompositeDisposable must be invoked after onStart and before onStop
-     * this CompositeDisposable isl disposed ind onStop
+     * this CompositeDisposable is disposed in onStop
      */
     protected lateinit var onStopDisposables: CompositeDisposable
         private set

@@ -26,17 +26,10 @@ class ConverterAdapter : RecyclerView.Adapter<ConverterAdapter.ViewHolder>() {
 
     override fun getItemCount(): Int = _convertedCurrencies.size
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) = Unit
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int, payloads: MutableList<Any>) {
-        super.onBindViewHolder(holder, position, payloads)
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = _convertedCurrencies[position]
-        if (payloads.isEmpty()) {
-            holder.bind(item)
-            holder.bindImage(item)
-        } else {
-            holder.bind(item)
-        }
+        holder.bind(item)
     }
 
     fun setConvertedCurrencies(convertedCurrencies: List<ConvertedCurrency>) {
@@ -57,16 +50,13 @@ class ConverterAdapter : RecyclerView.Adapter<ConverterAdapter.ViewHolder>() {
                 currencyAbbreviationTextView.text = convertedCurrency.currency.abbreviation
                 currencyNameTextView.setText(convertedCurrency.currency.nameId)
                 rateEditText.setText("${convertedCurrency.value}")
+                Glide.with(itemView)
+                    .load(convertedCurrency.currency.flagId)
+                    .apply {
+                        diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                    }
+                    .into(itemView.currencyFlagImageView)
             }
-        }
-
-        fun bindImage(convertedCurrency: ConvertedCurrency) {
-            Glide.with(itemView)
-                .load(convertedCurrency.currency.flagId)
-                .apply {
-                    diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-                }
-                .into(itemView.currencyFlagImageView)
         }
 
         private fun setupListeners() {
