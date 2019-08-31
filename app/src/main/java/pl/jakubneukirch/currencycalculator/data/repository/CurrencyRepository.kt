@@ -16,6 +16,10 @@ class CurrencyRepository @Inject constructor(
     private val _currencyDao: CurrencyDao
 ) {
 
+    /**
+     * Loads currency rates and saves them locally, finally returns local currency rates.
+     * If error occurs during loading from API, only local rates are loaded
+     */
     fun getRates(): Single<RatesTable> {
         return _currencyApi.getLatestRates()
             .map { ratesResponse -> ratesResponse.toCurrenciesDb() }

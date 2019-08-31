@@ -32,8 +32,9 @@ class ConverterFragment : BaseFragment<ConverterViewModel>(R.layout.fragment_cur
         _converterAdapter.onCurrencyChanged = { chosenCurrency ->
             viewModel.setSourceCurrency(chosenCurrency)
         }
-        currenciesRecyclerView.itemAnimator =
-            DefaultItemAnimator().apply { supportsChangeAnimations = false }
+        currenciesRecyclerView.itemAnimator = DefaultItemAnimator().apply {
+            supportsChangeAnimations = false
+        }
         currenciesRecyclerView.adapter = _converterAdapter
         currenciesRecyclerView.layoutManager = LinearLayoutManager(requireContext())
     }
