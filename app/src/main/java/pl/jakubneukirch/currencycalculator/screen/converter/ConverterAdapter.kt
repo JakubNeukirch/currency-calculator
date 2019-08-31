@@ -50,9 +50,18 @@ class ConverterAdapter : RecyclerView.Adapter<ConverterAdapter.ViewHolder>() {
             with(itemView) {
                 currencyAbbreviationTextView.text = convertedCurrency.currency.abbreviation
                 currencyNameTextView.setText(convertedCurrency.currency.nameId)
-                rateEditText.setText(convertedCurrency.value.removeZeros().toString())
+                rateEditText.setText(convertedCurrency.value.validateRateValueText())
                 itemView.currencyFlagImageView.loadResource(convertedCurrency.currency.flagId)
             }
+        }
+
+        private fun Double.validateRateValueText(): String {
+            return if (this == 0.0) {
+                ""
+            } else {
+                this.removeZeros().toString()
+            }
+
         }
 
         private fun setupListeners() {
@@ -63,9 +72,8 @@ class ConverterAdapter : RecyclerView.Adapter<ConverterAdapter.ViewHolder>() {
         private fun setupRateChangedListener() {
             itemView.rateEditText.addTextChangedListener(TextChangedListener { text ->
                 if (itemView.rateEditText.isFocused) {
-                    text.toDoubleOrNull()?.also { value ->
-                        _convertedCurrencies[adapterPosition].value = value
-                    }
+                    val value = text.toDoubleOrNull() ?: 0.0
+                    _convertedCurrencies[adapterPosition].value = value
                     onCurrencyChanged(_convertedCurrencies[adapterPosition])
                 }
             })
@@ -73,12 +81,15 @@ class ConverterAdapter : RecyclerView.Adapter<ConverterAdapter.ViewHolder>() {
 
         private fun setupItemClickListener() {
             itemView.setOnClickListener { view ->
-                if (!itemView.rateEditText.isFocused) {
-                    onCurrencyChanged(_convertedCurrencies[adapterPosition])
-                    view.requestFocus()
-                }
+                view.itemChosenAction()
             }
         }
 
+        private fun View.itemChosenAction() {
+            if (!itemView.rateEditText.isFocused) {
+                onCurrencyChanged(_convertedCurrencies[adapterPosition])
+                this.requestFocus()
+            }
+        }
     }
 }
