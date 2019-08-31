@@ -3,10 +3,9 @@ package pl.jakubneukirch.currencycalculator.screen.rates
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_currencies.*
-import pl.jakubneukirch.currencycalculator.R
-import pl.jakubneukirch.currencycalculator.base.BaseFragment
+import pl.jakubneukirch.currencycalculator.screen.currencies.CurrenciesFragment
 
-class RatesFragment : BaseFragment<RatesViewModel>(R.layout.fragment_currencies) {
+class RatesFragment : CurrenciesFragment<RatesViewModel>() {
 
     private val _ratesAdapter: RatesAdapter by lazy { RatesAdapter() }
 
@@ -17,6 +16,7 @@ class RatesFragment : BaseFragment<RatesViewModel>(R.layout.fragment_currencies)
 
     private fun subscribeToData() {
         viewModel.ratesTable.observe(this, Observer { ratesTable ->
+            setEmptyPage(ratesTable.currencies.isEmpty())
             _ratesAdapter.currencies = ratesTable.currencies
         })
     }

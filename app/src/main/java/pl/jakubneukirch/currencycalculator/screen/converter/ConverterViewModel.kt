@@ -42,6 +42,8 @@ class ConverterViewModel(
                 ratesTable.currencies.first().rate
             )
             calculateValues()
+        } else {
+            _convertedCurrencies.value = emptyList()
         }
     }
 

@@ -4,10 +4,9 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_currencies.*
-import pl.jakubneukirch.currencycalculator.R
-import pl.jakubneukirch.currencycalculator.base.BaseFragment
+import pl.jakubneukirch.currencycalculator.screen.currencies.CurrenciesFragment
 
-class ConverterFragment : BaseFragment<ConverterViewModel>(R.layout.fragment_currencies) {
+class ConverterFragment : CurrenciesFragment<ConverterViewModel>() {
 
     private val _converterAdapter: ConverterAdapter by lazy { ConverterAdapter() }
 
@@ -24,7 +23,12 @@ class ConverterFragment : BaseFragment<ConverterViewModel>(R.layout.fragment_cur
 
     private fun subscribeToData() {
         viewModel.convertedCurrencies.observe(this, Observer { convertedCurrencies ->
-            _converterAdapter.setConvertedCurrencies(convertedCurrencies)
+            if (convertedCurrencies.isNotEmpty()) {
+                setEmptyPage(false)
+                _converterAdapter.setConvertedCurrencies(convertedCurrencies)
+            } else {
+                setEmptyPage(true)
+            }
         })
     }
 
