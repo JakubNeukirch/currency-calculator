@@ -4,7 +4,7 @@
     <string name="main_all_rates">All Rates</string>
     <string name="main_converter">Converter</string>
     <string name="rate_flag_description">Image of country flag</string>
-    <string name="currency_value_hint">0.0</string>
+    <string name="currency_value_hint">0</string>
     <string name="currency_name_aud">Australian dollar</string>
     <string name="currency_name_bgn">Bulgarian lev</string>
     <string name="currency_name_brl">Brazilian real</string>

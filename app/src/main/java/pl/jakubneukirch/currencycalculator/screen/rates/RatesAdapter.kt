@@ -4,12 +4,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.DiskCacheStrategy
 import kotlinx.android.synthetic.main.item_currency.view.*
 import pl.jakubneukirch.currencycalculator.R
 import pl.jakubneukirch.currencycalculator.data.model.view.Currency
-import pl.jakubneukirch.currencycalculator.utils.roundDecimalPlace
+import pl.jakubneukirch.currencycalculator.utils.android.loadResource
+import pl.jakubneukirch.currencycalculator.utils.removeZeros
 
 
 class RatesAdapter : RecyclerView.Adapter<RatesAdapter.ViewHolder>() {
@@ -43,13 +42,8 @@ class RatesAdapter : RecyclerView.Adapter<RatesAdapter.ViewHolder>() {
             with(itemView) {
                 currencyAbbreviationTextView.text = currency.abbreviation
                 currencyNameTextView.setText(currency.nameId)
-                rateEditText.setText("${currency.rate.roundDecimalPlace()}")
-                Glide.with(itemView)
-                    .load(currency.flagId)
-                    .apply {
-                        diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-                    }
-                    .into(itemView.currencyFlagImageView)
+                rateEditText.setText("${currency.rate.removeZeros()}")
+                itemView.currencyFlagImageView.loadResource(currency.flagId)
             }
         }
     }
