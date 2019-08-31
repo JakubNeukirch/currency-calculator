@@ -81,14 +81,10 @@ class ConverterAdapter : RecyclerView.Adapter<ConverterAdapter.ViewHolder>() {
 
         private fun setupItemClickListener() {
             itemView.setOnClickListener { view ->
-                view.itemChosenAction()
-            }
-        }
-
-        private fun View.itemChosenAction() {
-            if (!itemView.rateEditText.isFocused) {
-                onCurrencyChanged(_convertedCurrencies[adapterPosition])
-                this.requestFocus()
+                if (!itemView.rateEditText.isFocused) {
+                    onCurrencyChanged(_convertedCurrencies[adapterPosition])
+                    view.requestFocus()
+                }
             }
         }
     }

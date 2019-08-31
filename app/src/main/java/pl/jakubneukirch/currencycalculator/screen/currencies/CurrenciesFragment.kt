@@ -8,8 +8,11 @@ import pl.jakubneukirch.currencycalculator.base.BaseViewModel
 abstract class CurrenciesFragment<T : BaseViewModel> :
     BaseFragment<T>(R.layout.fragment_currencies) {
     fun setEmptyPage(isEmpty: Boolean) {
-        currenciesViewFlipper.displayedChild =
-            if (isEmpty) CHILD_EMPTY_PAGE else CHILD_RECYCLER_VIEW
+        val nextChild = if (isEmpty) CHILD_EMPTY_PAGE else CHILD_RECYCLER_VIEW
+        if (currenciesViewFlipper.displayedChild != nextChild) {
+            currenciesViewFlipper.displayedChild = nextChild
+        }
+
     }
 
     companion object {
