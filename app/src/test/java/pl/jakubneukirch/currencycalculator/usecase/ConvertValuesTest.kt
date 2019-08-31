@@ -21,8 +21,8 @@ class ConvertValuesTest : BaseUseCaseTest<IConvertValues>() {
         val currencyAud = Currency("AUD", 1.61)
         val currencyEur = baseRate("EUR")
         val testRates = RatesTable(
-            baseCurrency = baseRate("EUR"),
             currencies = listOf(
+                currencyEur,
                 currencyPln,
                 currencyAud
             )

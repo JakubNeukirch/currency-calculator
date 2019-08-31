@@ -44,8 +44,7 @@ class ConverterViewModelTest : BaseViewModelTest<ConverterViewModel>() {
     @Test
     fun `should convert values on update rates`() {
         val testRates = RatesTable(
-            baseRate("EUR"),
-            listOf(Currency("PLN", 4.33))
+            listOf(baseRate("EUR"), Currency("PLN", 4.33))
         )
         every { _getRatesUpdates(any()) } returns Observable.just(testRates, testRates)
         every { _convertValues(any()) } returns Single.just(listOf())
@@ -67,8 +66,7 @@ class ConverterViewModelTest : BaseViewModelTest<ConverterViewModel>() {
     fun `should convert values on source currency change`() {
         val currencyPln = Currency("PLN", 4.33)
         val testRates = RatesTable(
-            baseRate("EUR"),
-            listOf(currencyPln)
+            listOf(baseRate("EUR"), currencyPln)
         )
 
         every { _getRatesUpdates(any()) } returns Observable.just(testRates)
@@ -84,8 +82,7 @@ class ConverterViewModelTest : BaseViewModelTest<ConverterViewModel>() {
     fun `should not change convertedCurrencies value on convert error`() {
         val currencyPln = Currency("PLN", 4.33)
         val testRates = RatesTable(
-            baseRate("EUR"),
-            listOf(currencyPln)
+            listOf(baseRate("EUR"), currencyPln)
         )
 
         every { _getRatesUpdates(any()) } returns Observable.just(testRates)

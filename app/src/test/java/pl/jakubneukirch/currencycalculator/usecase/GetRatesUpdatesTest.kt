@@ -27,7 +27,7 @@ class GetRatesUpdatesTest:BaseUseCaseTest<IGetRatesUpdates>() {
     fun `should update 3 times in 2 seconds`() {
         val testScheduler = TestScheduler()
         RxJavaPlugins.setComputationSchedulerHandler { testScheduler }
-        val inputData = RatesTable(Currency("EUR", 1.0), listOf())
+        val inputData = RatesTable(listOf(Currency("EUR", 1.0)))
 
         every { _currencyRepository.getRates() } returns Single.just(inputData)
 
@@ -41,7 +41,7 @@ class GetRatesUpdatesTest:BaseUseCaseTest<IGetRatesUpdates>() {
     fun `should update once in less than 1 second`() {
         val testScheduler = TestScheduler()
         RxJavaPlugins.setComputationSchedulerHandler { testScheduler }
-        val inputData = RatesTable(Currency("EUR", 1.0), listOf())
+        val inputData = RatesTable(listOf(Currency("EUR", 1.0)))
 
         every { _currencyRepository.getRates() } returns Single.just(inputData)
 

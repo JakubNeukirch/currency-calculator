@@ -27,7 +27,7 @@ class RatesViewModelTest : BaseViewModelTest<RatesViewModel>() {
 
     @Test
     fun `should update rates 3 times`() {
-        val exampleData = RatesTable(baseRate("Eur"), listOf())
+        val exampleData = RatesTable(listOf(baseRate("Eur")))
 
         every {
             _getRatesUpdates(UseCase.None)

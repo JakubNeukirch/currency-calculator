@@ -5,5 +5,5 @@ import org.mockito.junit.MockitoJUnitRunner
 
 @RunWith(MockitoJUnitRunner::class)
 abstract class BaseRepositoryTest<REPO: Any> {
-    protected open lateinit var repository: REPO
+    protected abstract var repository: REPO
 }
