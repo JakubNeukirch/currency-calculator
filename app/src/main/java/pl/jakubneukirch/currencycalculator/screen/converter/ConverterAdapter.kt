@@ -11,6 +11,7 @@ import kotlinx.android.synthetic.main.item_currency.view.*
 import pl.jakubneukirch.currencycalculator.R
 import pl.jakubneukirch.currencycalculator.data.model.view.ConvertedCurrency
 import pl.jakubneukirch.currencycalculator.utils.android.TextChangedListener
+import pl.jakubneukirch.currencycalculator.utils.removeZeros
 
 class ConverterAdapter : RecyclerView.Adapter<ConverterAdapter.ViewHolder>() {
 
@@ -49,7 +50,7 @@ class ConverterAdapter : RecyclerView.Adapter<ConverterAdapter.ViewHolder>() {
             with(itemView) {
                 currencyAbbreviationTextView.text = convertedCurrency.currency.abbreviation
                 currencyNameTextView.setText(convertedCurrency.currency.nameId)
-                rateEditText.setText("${convertedCurrency.value}")
+                rateEditText.setText(convertedCurrency.value.removeZeros().toString())
                 Glide.with(itemView)
                     .load(convertedCurrency.currency.flagId)
                     .apply {
