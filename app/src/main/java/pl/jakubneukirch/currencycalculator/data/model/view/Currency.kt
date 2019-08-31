@@ -1,19 +1,18 @@
 package pl.jakubneukirch.currencycalculator.data.model.view
 
+import androidx.annotation.DrawableRes
+import androidx.annotation.StringRes
+import pl.jakubneukirch.currencycalculator.R
+
 data class Currency(
     val abbreviation: String,
     val rate: Double,
-    val name: String = "US Dollars", //todo set real name
-    val flagUrl: String = ""
+    @StringRes
+    val nameId: Int = R.string.currency_name_unknown, //todo set real name
+    @DrawableRes
+    val flagId: Int = R.drawable.earth
 ) {
     companion object {
-        private const val BASE_VALUE = 1.0
-
-        fun baseRate(name: String): Currency {
-            return Currency(
-                abbreviation = name,
-                rate = BASE_VALUE
-            )
-        }
+        const val BASE_RATE = 1.0
     }
 }

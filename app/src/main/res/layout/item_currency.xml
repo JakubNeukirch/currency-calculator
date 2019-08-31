@@ -19,8 +19,10 @@
             app:cardElevation="0dp">
 
         <ImageView
-                android:id="@+id/currencyFlag"
+                android:id="@+id/currencyFlagImageView"
                 android:src="@drawable/ic_launcher_background"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop"
                 android:layout_width="@dimen/currency_flag_size"
                 android:layout_height="@dimen/currency_flag_size"
                 android:contentDescription="@string/rate_flag_description"/>

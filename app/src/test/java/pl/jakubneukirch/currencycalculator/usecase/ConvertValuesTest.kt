@@ -5,6 +5,7 @@ import pl.jakubneukirch.currencycalculator.base.BaseUseCaseTest
 import pl.jakubneukirch.currencycalculator.data.model.view.ConvertedCurrency
 import pl.jakubneukirch.currencycalculator.data.model.view.Currency
 import pl.jakubneukirch.currencycalculator.data.model.view.RatesTable
+import pl.jakubneukirch.currencycalculator.utils.baseRate
 
 class ConvertValuesTest : BaseUseCaseTest<IConvertValues>() {
     override lateinit var useCase: IConvertValues
@@ -18,9 +19,9 @@ class ConvertValuesTest : BaseUseCaseTest<IConvertValues>() {
     fun `should calculate currency values`() {
         val currencyPln = Currency("PLN", 4.31)
         val currencyAud = Currency("AUD", 1.61)
-        val currencyEur = Currency.baseRate("EUR")
+        val currencyEur = baseRate("EUR")
         val testRates = RatesTable(
-            baseCurrency = Currency.baseRate("EUR"),
+            baseCurrency = baseRate("EUR"),
             currencies = listOf(
                 currencyPln,
                 currencyAud

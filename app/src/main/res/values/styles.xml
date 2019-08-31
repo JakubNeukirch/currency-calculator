@@ -10,11 +10,6 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="AppTheme.AppBar" parent="Widget.Design.AppBarLayout">
-        <item name="background">@color/white</item>
-        <item name="titleTextStyle">@style/AppTheme.AppBar.Title</item>
-    </style>
-
     <style name="AppTheme.AppBar.Title" parent="TextAppearance.AppCompat.Title">
         <item name="android:textColor">@color/black</item>
     </style>
@@ -23,7 +18,5 @@
         <item name="android:textAllCaps">false</item>
         <item name="android:textColor">@color/black</item>
     </style>
-
-    <style name="AppTheme.TextView" parent="TextAppearance.AppCompat"/>
 
 </resources>

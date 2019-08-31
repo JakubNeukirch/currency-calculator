@@ -16,6 +16,7 @@ import pl.jakubneukirch.currencycalculator.data.model.view.RatesTable
 import pl.jakubneukirch.currencycalculator.screen.converter.ConverterViewModel
 import pl.jakubneukirch.currencycalculator.usecase.ConvertValues
 import pl.jakubneukirch.currencycalculator.usecase.IGetRatesUpdates
+import pl.jakubneukirch.currencycalculator.utils.baseRate
 import kotlin.test.assertFailsWith
 
 class ConverterViewModelTest : BaseViewModelTest<ConverterViewModel>() {
@@ -43,7 +44,7 @@ class ConverterViewModelTest : BaseViewModelTest<ConverterViewModel>() {
     @Test
     fun `should convert values on update rates`() {
         val testRates = RatesTable(
-            Currency.baseRate("EUR"),
+            baseRate("EUR"),
             listOf(Currency("PLN", 4.33))
         )
         every { _getRatesUpdates(any()) } returns Observable.just(testRates, testRates)
@@ -66,7 +67,7 @@ class ConverterViewModelTest : BaseViewModelTest<ConverterViewModel>() {
     fun `should convert values on source currency change`() {
         val currencyPln = Currency("PLN", 4.33)
         val testRates = RatesTable(
-            Currency.baseRate("EUR"),
+            baseRate("EUR"),
             listOf(currencyPln)
         )
 
@@ -83,7 +84,7 @@ class ConverterViewModelTest : BaseViewModelTest<ConverterViewModel>() {
     fun `should not change convertedCurrencies value on convert error`() {
         val currencyPln = Currency("PLN", 4.33)
         val testRates = RatesTable(
-            Currency.baseRate("EUR"),
+            baseRate("EUR"),
             listOf(currencyPln)
         )
 

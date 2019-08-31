@@ -5,7 +5,6 @@ import pl.jakubneukirch.currencycalculator.base.UseCase
 import pl.jakubneukirch.currencycalculator.data.model.view.ConvertedCurrency
 import pl.jakubneukirch.currencycalculator.data.model.view.RatesTable
 import pl.jakubneukirch.currencycalculator.utils.roundDecimalPlace
-import timber.log.Timber
 
 interface IConvertValues : UseCase<IConvertValues.Params, Single<List<ConvertedCurrency>>> {
     data class Params(

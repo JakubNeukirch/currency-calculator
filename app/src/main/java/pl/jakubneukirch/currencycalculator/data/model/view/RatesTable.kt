@@ -1,7 +1,5 @@
 package pl.jakubneukirch.currencycalculator.data.model.view
 
-import pl.jakubneukirch.currencycalculator.data.model.api.RatesResponse
-
 /**
  * Table with current rates of currencies
  */
@@ -21,16 +19,4 @@ data class RatesTable(
      */
     val allCurrencies: List<Currency>
         get() = listOf(baseCurrency, *currencies.toTypedArray())
-
-    companion object {
-        fun fromApiResponse(response: RatesResponse): RatesTable {
-            return RatesTable(
-                baseCurrency = Currency.baseRate(response.base),
-                currencies = response.rates.map { entry ->
-                    Currency(entry.key, entry.value)
-                }
-            )
-        }
-    }
-
 }

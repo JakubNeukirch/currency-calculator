@@ -1,15 +1,16 @@
 package pl.jakubneukirch.currencycalculator.screen.converter
 
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import kotlinx.android.synthetic.main.item_currency.view.*
 import pl.jakubneukirch.currencycalculator.R
 import pl.jakubneukirch.currencycalculator.data.model.view.ConvertedCurrency
+import pl.jakubneukirch.currencycalculator.utils.android.TextChangedListener
 
 class ConverterAdapter : RecyclerView.Adapter<ConverterAdapter.ViewHolder>() {
 
@@ -25,8 +26,10 @@ class ConverterAdapter : RecyclerView.Adapter<ConverterAdapter.ViewHolder>() {
 
     override fun getItemCount(): Int = _convertedCurrencies.size
 
+
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(_convertedCurrencies[position])
+        val item = _convertedCurrencies[position]
+        holder.bind(item)
     }
 
     fun setConvertedCurrencies(convertedCurrencies: List<ConvertedCurrency>) {
@@ -39,37 +42,40 @@ class ConverterAdapter : RecyclerView.Adapter<ConverterAdapter.ViewHolder>() {
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         init {
-            itemView.rateEditText.isEnabled = true
-            itemView.setOnClickListener { view ->
-                onCurrencyChanged(_convertedCurrencies[adapterPosition])
-                view.requestFocus()
-            }
-            itemView.rateEditText.addTextChangedListener(object : TextWatcher {
-                override fun afterTextChanged(s: Editable?) = Unit
-                override fun beforeTextChanged(
-                    s: CharSequence?,
-                    start: Int,
-                    count: Int,
-                    after: Int
-                ) = Unit
-
-                override fun onTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {
-                    if (itemView.rateEditText.isFocused) {
-                        text?.toString()?.toDoubleOrNull()?.also { value ->
-                            _convertedCurrencies[adapterPosition].value = value
-                        }
-                        onCurrencyChanged(_convertedCurrencies[adapterPosition])
-                    }
-                }
-            })
+            setupListeners()
         }
 
         fun bind(convertedCurrency: ConvertedCurrency) {
             with(itemView) {
                 currencyAbbreviationTextView.text = convertedCurrency.currency.abbreviation
-                currencyNameTextView.text = convertedCurrency.currency.name
+                currencyNameTextView.setText(convertedCurrency.currency.nameId)
                 rateEditText.setText("${convertedCurrency.value}")
+                Glide.with(itemView)
+                    .load(convertedCurrency.currency.flagId)
+                    .apply {
+                        diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                    }
+                    .into(itemView.currencyFlagImageView)
             }
         }
+
+        private fun setupListeners() {
+            itemView.rateEditText.isEnabled = true
+            itemView.setOnClickListener { view ->
+                if (!itemView.rateEditText.isFocused) {
+                    onCurrencyChanged(_convertedCurrencies[adapterPosition])
+                    view.requestFocus()
+                }
+            }
+            itemView.rateEditText.addTextChangedListener(TextChangedListener { text ->
+                if (itemView.rateEditText.isFocused) {
+                    text.toDoubleOrNull()?.also { value ->
+                        _convertedCurrencies[adapterPosition].value = value
+                    }
+                    onCurrencyChanged(_convertedCurrencies[adapterPosition])
+                }
+            })
+        }
+
     }
 }
