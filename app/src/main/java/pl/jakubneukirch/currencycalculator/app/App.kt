@@ -1,6 +1,5 @@
 package pl.jakubneukirch.currencycalculator.app
 
-import android.app.AppComponentFactory
 import android.app.Application
 import androidx.fragment.app.Fragment
 import dagger.android.AndroidInjector
@@ -12,13 +11,13 @@ import pl.jakubneukirch.currencycalculator.di.DaggerAppComponent
 import timber.log.Timber
 import javax.inject.Inject
 
-class App:Application(), HasSupportFragmentInjector {
+class App : Application(), HasSupportFragmentInjector {
     @Inject
     protected lateinit var fragmentInjector: DispatchingAndroidInjector<Fragment>
     lateinit var appComponent: AppComponent
     override fun onCreate() {
         super.onCreate()
-        if(BuildConfig.DEBUG) {
+        if (BuildConfig.DEBUG) {
             Timber.plant(Timber.DebugTree())
         }
         appComponent = DaggerAppComponent
