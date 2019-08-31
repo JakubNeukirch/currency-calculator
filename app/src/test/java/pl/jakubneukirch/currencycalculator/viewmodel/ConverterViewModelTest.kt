@@ -54,6 +54,17 @@ class ConverterViewModelTest : BaseViewModelTest<ConverterViewModel>() {
     }
 
     @Test
+    fun `should post empty list on empty response`() {
+        every { _getRatesUpdates(any()) } returns Observable.just(RatesTable(emptyList()))
+
+        viewModel.listenToRatesChanges()
+
+        viewModel.convertedCurrencies
+            .test()
+            .assertValue(emptyList())
+    }
+
+    @Test
     fun `should not convert values on update rates error`() {
         every { _getRatesUpdates(any()) } returns Observable.error(Exception("error"))
         every { _convertValues(any()) } returns Single.just(listOf())
@@ -102,7 +113,7 @@ class ConverterViewModelTest : BaseViewModelTest<ConverterViewModel>() {
         every { _getRatesUpdates(any()) } returns Observable.error(Exception("error"))
         every { _convertValues(any()) } returns Single.just(listOf())
 
-        assertFailsWith<UninitializedPropertyAccessException>{
+        assertFailsWith<UninitializedPropertyAccessException> {
             viewModel.setSourceCurrency(ConvertedCurrency(currencyPln, 8.0))
         }
     }

@@ -53,6 +53,17 @@ class RatesViewModelTest : BaseViewModelTest<RatesViewModel>() {
             .assertNoValue()
     }
 
+    @Test
+    fun `should post empty RatesTable on empty response`() {
+        every { _getRatesUpdates(any()) } returns Observable.just(RatesTable(emptyList()))
+
+        viewModel.listenToRatesChanges()
+
+        viewModel.ratesTable
+            .test()
+            .assertValue(RatesTable(emptyList()))
+    }
+
     @After
     fun tearDown() {
         viewModel.onStop()
