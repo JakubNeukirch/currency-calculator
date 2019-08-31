@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+        android:width="1400dp"
+        android:height="800dp"
+        android:viewportWidth="1572"
+        android:viewportHeight="898">
+    <group android:name="g737" />
+</vector>
