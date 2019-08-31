@@ -2,4 +2,4 @@
 Calculate various currency values.
 
 ## Used sources
-Flags and full currency names are fetched from MPL 2.0 licensed restcountries.eu REST Api were used
+Flags on Apache license fetched from https://github.com/Shusshu/android-flags 
