@@ -3,13 +3,11 @@ package pl.jakubneukirch.currencycalculator.screen.converter
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.fragment_converter.*
+import kotlinx.android.synthetic.main.fragment_currencies.*
 import pl.jakubneukirch.currencycalculator.R
 import pl.jakubneukirch.currencycalculator.base.BaseFragment
-import timber.log.Timber
 
-class ConverterFragment : BaseFragment<ConverterViewModel>(R.layout.fragment_converter) {
+class ConverterFragment : BaseFragment<ConverterViewModel>(R.layout.fragment_currencies) {
 
     private val _converterAdapter: ConverterAdapter by lazy { ConverterAdapter() }
 
@@ -34,8 +32,9 @@ class ConverterFragment : BaseFragment<ConverterViewModel>(R.layout.fragment_con
         _converterAdapter.onCurrencyChanged = { chosenCurrency ->
             viewModel.setSourceCurrency(chosenCurrency)
         }
-        converterRecyclerView.itemAnimator = DefaultItemAnimator().apply { supportsChangeAnimations = false }
-        converterRecyclerView.adapter = _converterAdapter
-        converterRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+        currenciesRecyclerView.itemAnimator =
+            DefaultItemAnimator().apply { supportsChangeAnimations = false }
+        currenciesRecyclerView.adapter = _converterAdapter
+        currenciesRecyclerView.layoutManager = LinearLayoutManager(requireContext())
     }
 }
