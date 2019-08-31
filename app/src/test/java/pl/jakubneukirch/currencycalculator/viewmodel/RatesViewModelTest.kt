@@ -9,10 +9,10 @@ import org.junit.Before
 import org.junit.Test
 import pl.jakubneukirch.currencycalculator.base.BaseViewModelTest
 import pl.jakubneukirch.currencycalculator.base.UseCase
-import pl.jakubneukirch.currencycalculator.data.model.view.Currency
 import pl.jakubneukirch.currencycalculator.data.model.view.RatesTable
 import pl.jakubneukirch.currencycalculator.screen.rates.RatesViewModel
 import pl.jakubneukirch.currencycalculator.usecase.IGetRatesUpdates
+import pl.jakubneukirch.currencycalculator.utils.baseRate
 
 class RatesViewModelTest : BaseViewModelTest<RatesViewModel>() {
     override lateinit var viewModel: RatesViewModel
@@ -27,7 +27,7 @@ class RatesViewModelTest : BaseViewModelTest<RatesViewModel>() {
 
     @Test
     fun `should update rates 3 times`() {
-        val exampleData = RatesTable(Currency.baseRate("Eur"), listOf())
+        val exampleData = RatesTable(baseRate("Eur"), listOf())
 
         every {
             _getRatesUpdates(UseCase.None)

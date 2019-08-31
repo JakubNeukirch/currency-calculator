@@ -13,5 +13,5 @@ abstract class BaseViewModelTest<T : BaseViewModel> {
     @get:Rule
     val instantExecutor = InstantTaskExecutorRule()
 
-    protected open lateinit var viewModel: T
+    protected abstract var viewModel: T
 }
