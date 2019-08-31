@@ -5,5 +5,6 @@
     <dimen name="rate_value_min_width">80dp</dimen>
     <dimen name="currency_flag_size">54dp</dimen>
     <dimen name="image_card_radius">27dp</dimen>
-    <dimen name="currency_flag_margin">8dp</dimen>
+    <dimen name="currency_flag_margin">16dp</dimen>
+    <dimen name="currency_text_margin_start">16dp</dimen>
 </resources>

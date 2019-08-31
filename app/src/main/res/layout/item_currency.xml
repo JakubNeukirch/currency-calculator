@@ -2,7 +2,6 @@
 <androidx.constraintlayout.widget.ConstraintLayout
         xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -32,10 +31,13 @@
     <TextView
             android:id="@+id/currencyAbbreviationTextView"
             style="@style/TextAppearance.AppCompat.Subhead"
-            android:layout_margin="@dimen/rate_text_margin"
+            android:layout_marginStart="@dimen/currency_text_margin_start"
+            android:layout_marginTop="@dimen/rate_text_margin"
+            android:layout_marginBottom="@dimen/rate_text_margin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
+            android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@id/imageCard"
             app:layout_constraintTop_toTopOf="@id/imageCard"
             app:layout_constraintBottom_toTopOf="@id/currencyNameTextView"
@@ -44,7 +46,9 @@
 
     <TextView
             android:id="@+id/currencyNameTextView"
-            android:layout_margin="@dimen/rate_text_margin"
+            android:layout_marginStart="@dimen/currency_text_margin_start"
+            android:layout_marginTop="@dimen/rate_text_margin"
+            android:layout_marginBottom="@dimen/rate_text_margin"
             app:layout_constraintTop_toBottomOf="@id/currencyAbbreviationTextView"
             app:layout_constraintStart_toEndOf="@id/imageCard"
             app:layout_constraintBottom_toBottomOf="@id/imageCard"
