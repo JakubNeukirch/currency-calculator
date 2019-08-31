@@ -7,5 +7,6 @@ import androidx.room.PrimaryKey
 data class CurrencyDb(
     @PrimaryKey
     val abbreviation: String,
-    val rate: Double
+    val rate: Double,
+    val isBase: Boolean
 )

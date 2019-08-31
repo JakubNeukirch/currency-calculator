@@ -37,8 +37,8 @@ class ConverterViewModel(
     private fun setRatesTable(ratesTable: RatesTable) {
         _ratesTable = ratesTable
         _sourceCurrency = _sourceCurrency ?: ConvertedCurrency(
-            ratesTable.baseCurrency,
-            ratesTable.baseCurrency.rate
+            ratesTable.currencies.first(),
+            ratesTable.currencies.first().rate
         )
         calculateValues()
     }

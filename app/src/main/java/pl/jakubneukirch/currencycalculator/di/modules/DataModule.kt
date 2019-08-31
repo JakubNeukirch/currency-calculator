@@ -1,6 +1,6 @@
 package pl.jakubneukirch.currencycalculator.di.modules
 
-import android.content.Context
+import android.app.Application
 import androidx.room.Room
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
@@ -37,9 +37,9 @@ class DataModule {
 
     @Provides
     @Singleton
-    fun provideCurrencyDatabase(context: Context): CurrencyDatabase {
+    fun provideCurrencyDatabase(app: Application): CurrencyDatabase {
         return Room.databaseBuilder(
-            context,
+            app.applicationContext,
             CurrencyDatabase::class.java,
             "currency-database"
         ).build()

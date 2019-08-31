@@ -3,6 +3,7 @@ package pl.jakubneukirch.currencycalculator.usecase
 import io.reactivex.Single
 import pl.jakubneukirch.currencycalculator.base.UseCase
 import pl.jakubneukirch.currencycalculator.data.model.view.ConvertedCurrency
+import pl.jakubneukirch.currencycalculator.data.model.view.Currency
 import pl.jakubneukirch.currencycalculator.data.model.view.RatesTable
 import pl.jakubneukirch.currencycalculator.utils.roundDecimalPlace
 
@@ -39,18 +40,13 @@ class ConvertValues : IConvertValues {
         sourceCurrency: ConvertedCurrency,
         rates: RatesTable
     ): List<ConvertedCurrency> {
-        val allCurrencies = rates.allCurrencies
-        val sourceCurrencyRate = allCurrencies
-            .find { currency -> currency.abbreviation == sourceCurrency.currency.abbreviation }!!
-            .rate
-        val baseRateValue = sourceCurrency.value / sourceCurrencyRate
-        return rates.allCurrencies
+        return rates.currencies
             .asSequence()
             .filter { currency -> currency.abbreviation != sourceCurrency.currency.abbreviation }
             .map { currency ->
                 ConvertedCurrency(
                     currency = currency,
-                    value = convertValue(baseRateValue, currency.rate)
+                    value = convertValue(sourceCurrency, currency).roundDecimalPlace()
                 )
             }
             .toMutableList()
@@ -59,7 +55,11 @@ class ConvertValues : IConvertValues {
             }
     }
 
-    private fun convertValue(baseRateValue: Double, currencyRate: Double): Double {
-        return (baseRateValue * currencyRate).roundDecimalPlace()
+    private fun convertValue(
+        sourceCurrency: ConvertedCurrency,
+        destinationCurrency: Currency
+    ): Double {
+        val ratio = sourceCurrency.currency.rate / destinationCurrency.rate
+        return sourceCurrency.value / ratio
     }
 }
