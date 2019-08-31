@@ -6,8 +6,8 @@ import io.reactivex.Single
 import org.junit.Before
 import org.junit.Test
 import pl.jakubneukirch.currencycalculator.base.BaseRepositoryTest
-import pl.jakubneukirch.currencycalculator.data.CurrencyApi
 import pl.jakubneukirch.currencycalculator.data.CurrencyDetailsProvider
+import pl.jakubneukirch.currencycalculator.data.api.CurrencyApi
 import pl.jakubneukirch.currencycalculator.data.model.api.RatesResponse
 import pl.jakubneukirch.currencycalculator.data.model.view.Currency
 import pl.jakubneukirch.currencycalculator.data.model.view.RatesTable

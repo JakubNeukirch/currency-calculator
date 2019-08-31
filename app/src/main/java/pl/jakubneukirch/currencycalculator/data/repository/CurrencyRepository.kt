@@ -1,8 +1,8 @@
 package pl.jakubneukirch.currencycalculator.data.repository
 
 import io.reactivex.Single
-import pl.jakubneukirch.currencycalculator.data.CurrencyApi
 import pl.jakubneukirch.currencycalculator.data.CurrencyDetailsProvider
+import pl.jakubneukirch.currencycalculator.data.api.CurrencyApi
 import pl.jakubneukirch.currencycalculator.data.model.view.Currency
 import pl.jakubneukirch.currencycalculator.data.model.view.RatesTable
 import javax.inject.Inject
