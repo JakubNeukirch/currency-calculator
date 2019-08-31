@@ -36,11 +36,13 @@ class ConverterViewModel(
 
     private fun setRatesTable(ratesTable: RatesTable) {
         _ratesTable = ratesTable
-        _sourceCurrency = _sourceCurrency ?: ConvertedCurrency(
-            ratesTable.baseCurrency,
-            ratesTable.baseCurrency.rate
-        )
-        calculateValues()
+        if (ratesTable.currencies.isNotEmpty()) {
+            _sourceCurrency = _sourceCurrency ?: ConvertedCurrency(
+                ratesTable.currencies.first(),
+                ratesTable.currencies.first().rate
+            )
+            calculateValues()
+        }
     }
 
     fun setSourceCurrency(currency: ConvertedCurrency) {

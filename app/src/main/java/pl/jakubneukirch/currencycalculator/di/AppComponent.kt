@@ -4,15 +4,18 @@ import android.app.Application
 import dagger.BindsInstance
 import dagger.Component
 import pl.jakubneukirch.currencycalculator.app.App
-import pl.jakubneukirch.currencycalculator.di.modules.AppModule
-import pl.jakubneukirch.currencycalculator.di.modules.ConverterModule
-import pl.jakubneukirch.currencycalculator.di.modules.RatesModule
-import pl.jakubneukirch.currencycalculator.di.modules.UseCaseModule
+import pl.jakubneukirch.currencycalculator.di.modules.*
 import javax.inject.Singleton
 
 @Singleton
 @Component(
-    modules = [AppModule::class, ConverterModule::class, RatesModule::class, UseCaseModule::class]
+    modules = [
+        AppModule::class,
+        ConverterModule::class,
+        RatesModule::class,
+        UseCaseModule::class,
+        DataModule::class
+    ]
 )
 interface AppComponent {
     fun inject(app: App)

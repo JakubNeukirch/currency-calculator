@@ -1,4 +1,4 @@
-package pl.jakubneukirch.currencycalculator.data
+package pl.jakubneukirch.currencycalculator.data.api
 
 import io.reactivex.Single
 import pl.jakubneukirch.currencycalculator.data.model.api.RatesResponse
@@ -16,5 +16,6 @@ interface CurrencyApi {
     companion object {
         const val BASE_URL = "https://revolut.duckdns.org/"
         const val DEFAULT_CURRENCY = "EUR"
+        const val DATE_FORMAT = "yyyy-MM-dd"
     }
 }
