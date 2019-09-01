@@ -90,7 +90,7 @@ class ConverterAdapter : RecyclerView.Adapter<ConverterAdapter.ViewHolder>() {
         }
 
         private fun setupRateFocusedListener() {
-            itemView.rateEditText.setOnFocusChangeListener { view, hasFocus ->
+            itemView.rateEditText.setOnFocusChangeListener { _, hasFocus ->
                 if (adapterPosition > 0 && hasFocus) {
                     onCurrencyChanged(_convertedCurrencies[adapterPosition])
                 }
