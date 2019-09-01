@@ -3,6 +3,7 @@ package pl.jakubneukirch.currencycalculator.base
 import androidx.lifecycle.ViewModel
 import io.reactivex.disposables.CompositeDisposable
 
+@Suppress("MemberVisibilityCanBePrivate")
 abstract class BaseViewModel : ViewModel() {
     protected val disposables = CompositeDisposable()
     /**

@@ -15,8 +15,11 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
+            shrinkResources true
+            proguardFile 'proguard-gson.pro'
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.debug
         }
     }
 }
@@ -45,6 +48,7 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.5'
 
     //support libraries
+    implementation group: 'androidx.versionedparcelable', name: 'versionedparcelable', version: '1.1.0'
     implementation 'androidx.appcompat:appcompat:1.0.2'
     implementation 'androidx.core:core-ktx:1.0.2'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
