@@ -8,7 +8,7 @@ data class Currency(
     val abbreviation: String,
     val rate: Double,
     @StringRes
-    val nameId: Int = R.string.currency_name_unknown, //todo set real name
+    val nameId: Int = R.string.currency_name_unknown,
     @DrawableRes
     val flagId: Int = R.drawable.earth
 ) {
