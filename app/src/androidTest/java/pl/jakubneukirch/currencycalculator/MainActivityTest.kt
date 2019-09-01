@@ -16,11 +16,6 @@ import pl.jakubneukirch.currencycalculator.matchers.isTabAtSelected
 import pl.jakubneukirch.currencycalculator.screen.main.MainActivity
 import pl.jakubneukirch.currencycalculator.screen.rates.RatesFragment
 
-/**
- * Instrumented test, which will execute on an Android device.
- *
- * See [testing documentation](http://d.android.com/tools/testing).
- */
 @RunWith(AndroidJUnit4::class)
 class MainActivityTest {
     @get:Rule
