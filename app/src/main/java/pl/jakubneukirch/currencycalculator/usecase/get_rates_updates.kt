@@ -16,7 +16,6 @@ class GetRatesUpdates constructor(private val _currencyRepository: CurrencyRepos
     override fun run(params: UseCase.None): Observable<RatesTable> {
         return Observable.interval(INITIAL_DELAY, REFRESH_INTERVAL, TimeUnit.SECONDS)
             .flatMapSingle { _currencyRepository.getRates() }
-        //todo implement in offline mode.onErrorReturn {  }
     }
 
     companion object {
