@@ -15,10 +15,18 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setupViewPager()
+        setupToolbar()
     }
 
     private fun setupViewPager() {
         mainViewPager.adapter = _pagerAdapter
         mainTabLayout.setupWithViewPager(mainViewPager)
+    }
+
+
+    private fun setupToolbar() {
+        mainToolbar.setNavigationOnClickListener {
+            onBackPressed()
+        }
     }
 }
