@@ -1,3 +1,5 @@
+@file:Suppress("unused")
+
 package pl.jakubneukirch.currencycalculator.di
 
 import android.app.Application
