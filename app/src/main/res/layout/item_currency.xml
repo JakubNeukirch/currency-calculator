@@ -69,7 +69,6 @@
             android:importantForAutofill="no"
             android:textSize="@dimen/edit_text_value_text_size"
             android:inputType="numberDecimal"
-            android:minWidth="@dimen/rate_value_min_width"
             android:textAlignment="textEnd"
             android:textColor="@color/rates_text_color"
             app:layout_constrainedWidth="true"
