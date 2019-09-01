@@ -1,3 +1,5 @@
+@file:Suppress("KDocUnresolvedReference")
+
 package pl.jakubneukirch.currencycalculator.usecase
 
 import io.reactivex.Single

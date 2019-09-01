@@ -27,6 +27,7 @@ class MainPagerAdapter(fragmentManager: FragmentManager, private val resources: 
 
     override fun getCount(): Int = ITEM_COUNT
 
+    @Suppress("unused")
     companion object {
         private const val ITEM_COUNT = 2
 

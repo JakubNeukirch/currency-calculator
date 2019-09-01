@@ -12,9 +12,10 @@ import timber.log.Timber
 import javax.inject.Inject
 
 class App : Application(), HasSupportFragmentInjector {
+    @Suppress("ProtectedInFinal")
     @Inject
     protected lateinit var fragmentInjector: DispatchingAndroidInjector<Fragment>
-    lateinit var appComponent: AppComponent
+    private lateinit var appComponent: AppComponent
     override fun onCreate() {
         super.onCreate()
         if (BuildConfig.DEBUG) {

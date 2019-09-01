@@ -7,7 +7,7 @@
     <dimen name="image_card_radius">27dp</dimen>
     <dimen name="currency_flag_margin">16dp</dimen>
     <dimen name="currency_text_margin_start">16dp</dimen>
-    <dimen name="no_data_content_margin">70dp</dimen>
-    <dimen name="no_data_text_margin">8dp</dimen>
+    <dimen name="no_data_content_margin">50dp</dimen>
+    <dimen name="no_data_drawable_padding">8dp</dimen>
     <dimen name="edit_text_value_text_size">14sp</dimen>
 </resources>

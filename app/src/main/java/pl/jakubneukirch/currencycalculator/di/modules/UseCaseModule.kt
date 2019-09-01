@@ -20,7 +20,7 @@ class UseCaseModule {
 
     @Provides
     @Singleton
-    fun provideConverValues() : IConvertValues {
+    fun provideConvertValues(): IConvertValues {
         return ConvertValues()
     }
 }

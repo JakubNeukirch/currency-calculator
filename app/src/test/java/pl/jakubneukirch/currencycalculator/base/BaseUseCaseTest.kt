@@ -8,7 +8,7 @@ import org.mockito.junit.MockitoJUnitRunner
 
 @RunWith(MockitoJUnitRunner::class)
 abstract class BaseUseCaseTest<UC : UseCase<*, *>> {
-    protected open lateinit var useCase: UC
+    protected abstract var useCase: UC
 
     @Before
     open fun setup() {
