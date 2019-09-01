@@ -34,6 +34,10 @@ class RxOverrideScheduleRule : TestRule {
                 RxJavaPlugins.setInitSingleSchedulerHandler { immediate }
                 RxAndroidPlugins.setInitMainThreadSchedulerHandler { immediate }
                 RxAndroidPlugins.setMainThreadSchedulerHandler { immediate }
+                RxJavaPlugins.setIoSchedulerHandler { immediate }
+                RxJavaPlugins.setComputationSchedulerHandler { immediate }
+                RxJavaPlugins.setNewThreadSchedulerHandler { immediate }
+                RxJavaPlugins.setSingleSchedulerHandler { immediate }
 
                 try {
                     base.evaluate()
