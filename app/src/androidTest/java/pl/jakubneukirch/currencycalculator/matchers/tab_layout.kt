@@ -29,3 +29,20 @@ fun isTabAtSelected(index: Int): Matcher<View> {
         }
     }
 }
+
+fun hasTabTitlesInOrder(titles: List<String>): Matcher<View> {
+    return object : TypeSafeMatcher<View>() {
+        override fun describeTo(description: Description?) {
+            description?.appendText("Check if titles are $titles")
+        }
+
+        override fun matchesSafely(item: View?): Boolean {
+            if (item is TabLayout?) {
+                val tabTitles = (titles.indices)
+                    .map { item?.getTabAt(it)?.text?.toString() }
+                return titles == tabTitles
+            }
+            return false
+        }
+    }
+}

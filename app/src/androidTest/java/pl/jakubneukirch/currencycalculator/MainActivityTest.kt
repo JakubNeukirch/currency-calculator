@@ -11,6 +11,7 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import pl.jakubneukirch.currencycalculator.matchers.hasTabCount
+import pl.jakubneukirch.currencycalculator.matchers.hasTabTitlesInOrder
 import pl.jakubneukirch.currencycalculator.matchers.isTabAtSelected
 import pl.jakubneukirch.currencycalculator.screen.main.MainActivity
 import pl.jakubneukirch.currencycalculator.screen.rates.RatesFragment
@@ -48,5 +49,20 @@ class MainActivityTest {
             .fragments
             .find { it is RatesFragment }
         assertEquals(true, ratesFragment?.userVisibleHint)
+    }
+
+    @Test
+    fun shouldHasCorrectTabTitles() {
+        onView(withId(R.id.mainTabLayout))
+            .check(
+                matches(
+                    hasTabTitlesInOrder(
+                        listOf(
+                            activityRule.activity.getString(R.string.main_all_rates),
+                            activityRule.activity.getString(R.string.main_converter)
+                        )
+                    )
+                )
+            )
     }
 }
