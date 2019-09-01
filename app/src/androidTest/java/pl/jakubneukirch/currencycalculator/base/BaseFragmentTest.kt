@@ -4,6 +4,7 @@ import androidx.fragment.app.Fragment
 import androidx.test.rule.ActivityTestRule
 import com.squareup.rx2.idler.Rx2Idler
 import io.reactivex.plugins.RxJavaPlugins
+import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import pl.jakubneukirch.currencycalculator.R
@@ -27,5 +28,10 @@ open class BaseFragmentTest<T : Fragment>(private val _fragmentClass: KClass<T>)
         RxJavaPlugins.setInitIoSchedulerHandler(
             Rx2Idler.create("RxJava 2.x IO Scheduler")
         )
+    }
+
+    @After
+    fun tearDown() {
+        RxJavaPlugins.reset()
     }
 }
