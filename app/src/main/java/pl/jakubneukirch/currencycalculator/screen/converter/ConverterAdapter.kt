@@ -51,7 +51,7 @@ class ConverterAdapter : RecyclerView.Adapter<ConverterAdapter.ViewHolder>() {
                 currencyAbbreviationTextView.text = convertedCurrency.currency.abbreviation
                 currencyNameTextView.setText(convertedCurrency.currency.nameId)
                 rateEditText.setText(convertedCurrency.value.validateRateValueText())
-                itemView.currencyFlagImageView.loadResource(convertedCurrency.currency.flagId)
+                currencyFlagImageView.loadResource(convertedCurrency.currency.flagId)
             }
         }
 
@@ -61,7 +61,6 @@ class ConverterAdapter : RecyclerView.Adapter<ConverterAdapter.ViewHolder>() {
             } else {
                 this.removeZeros().toString()
             }
-
         }
 
         private fun setupListeners() {
